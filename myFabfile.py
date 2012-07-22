@@ -21,6 +21,10 @@ def undoChangeOnFile(filename):
     local('git checkout -- %s' % filename)
 
 
+def resetWC():
+    local('reset --hard HEAD')
+
+
 def push():
     local("git push")
 
