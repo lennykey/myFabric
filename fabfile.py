@@ -39,4 +39,4 @@ def update():
 @task
 def osVersion():
     '''Shows the version of your operating system'''
-    myvar = local('cat /etc/issue', capture=False)
+    command = local('cat /etc/issue', capture=False)
