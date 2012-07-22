@@ -10,10 +10,15 @@ def test():
 
 def commit():
         with settings(hide('warnings'), warn_only=True):
-            capture = local("git add -p && git commit -e")
+            command = local("git add -p && git commit -e")
 
-            if capture.failed:
-                print('No changes found on this git Repository')
+            if command.failed:
+                print('''No changes found on this git Repository or staging was\
+ aborted''')
+
+
+def undoChangeOnFile(filename):
+    local('git checkout -- %s' % filename)
 
 
 def push():
