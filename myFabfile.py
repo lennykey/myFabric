@@ -22,7 +22,7 @@ def undoChangeOnFile(filename):
 
 
 def resetWC():
-    local('reset --hard HEAD')
+    local('git reset --hard HEAD')
 
 
 def push():
