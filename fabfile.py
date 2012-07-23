@@ -40,3 +40,9 @@ def update():
 def osVersion():
     '''Shows the version of your operating system'''
     command = local('cat /etc/issue', capture=False)
+
+
+@task
+def installPackage(package):
+    '''Install Packages over apt-get -> usage installPackage:PackageName'''
+    local('sudo apt-get install %s' % package)
