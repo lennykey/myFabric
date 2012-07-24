@@ -4,19 +4,20 @@
 from fabric.api import local, task, run, settings
 from fabric.tasks import Task
 from fabric.decorators import hosts
+from fabric.colors import green, red, yellow
 
 
 @task
 def diskUsage():
     '''Shows information about your systems space'''
     with settings(warn_only=True):
-        capture = local('df afsdf -h -T -x devtmpfs -x tmpfs', capture=True)
+        capture = local('df -h -T -x devtmpfs -x tmpfs', capture=True)
 
         if capture.failed:
-            print("Sorry :-/")
+            print(red("Sorry :-/"))
         else:
-            print('*** This information were found ***')
-            print(capture)
+            print(yellow('*** This information were found ***'))
+            print(green(capture))
 
 
 def updateSystem():
@@ -30,9 +31,9 @@ def upgradeSystem():
 @task
 def update():
     '''This task updates the sources list and upgrades the packages'''
-    print('*** Updating Package list ***')
+    print(green('*** Updating Package list ***'))
     updateSystem()
-    print('*** Upgrading System ***')
+    print(green('*** Upgrading System ***'))
     upgradeSystem()
 
 
