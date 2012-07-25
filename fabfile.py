@@ -5,9 +5,10 @@ from fabric.api import local, task, run, settings
 from fabric.tasks import Task
 from fabric.decorators import hosts
 from fabric.colors import green, red, yellow
+import deploy
 
 
-@task
+@task(alias='du')
 def diskUsage():
     '''Shows information about your systems space'''
     with settings(warn_only=True):
@@ -28,7 +29,7 @@ def upgradeSystem():
     local('sudo apt-get upgrade')
 
 
-@task
+@task(alias='upd')
 def update():
     '''This task updates the sources list and upgrades the packages'''
     print(green('*** Updating Package list ***'))
@@ -37,13 +38,13 @@ def update():
     upgradeSystem()
 
 
-@task
+@task(alias='osv')
 def osVersion():
     '''Shows the version of your operating system'''
     command = local('cat /etc/issue', capture=False)
 
 
-@task
+@task(alias='ip')
 def installPackage(package):
     '''Install Packages over apt-get -> usage installPackage:PackageName'''
     local('sudo apt-get install %s' % package)
